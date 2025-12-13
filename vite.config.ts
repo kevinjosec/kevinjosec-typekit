@@ -1,9 +1,27 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
-
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-})
+  plugins: [react()],
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "Typography",
+      formats: ["es", "cjs"],
+      fileName: (format) => `index.${format}.js`
+    },
+    outDir: "dist",
+    rollupOptions: {
+      external: ["react", "react-dom"], // don't bundle react
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM"
+        }
+      }
+    },
+    emptyOutDir: false // important! <- prevents deleting .d.ts files
+  }
+});
