@@ -18,23 +18,26 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "./style.css": "./dist/index.css",
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && vite build",
-    "prepublishOnly": "npm run build"
-  },
+  "build:css": "tailwindcss -i ./src/index.css -o ./dist/style.css",
+  "build": "tsc -p tsconfig.build.json && vite build && npm run build:css",
+  "prepublishOnly": "npm run build"
+},
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "clsx": "^2.1.1",
-    "tailwindcss": "^4.1.18"
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
     "@types/node": "^25.0.1",
     "@types/react": "^19.2.7",
     "@vitejs/plugin-react": "^5.1.2",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   }
 }
