@@ -1,6 +1,6 @@
 {
   "name": "@kevinjosec/typekit",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "publishConfig": {
     "access": "public"
   },
@@ -11,14 +11,19 @@
   "files": [
     "dist"
   ],
+  "style": "dist/style.css",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.es.js"
+    },
+    "./style.css": {
+      "import": "./dist/style.css",
+      "default": "./dist/style.css"
     }
   },
-  "./style.css": "./dist/index.css",
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
